@@ -17,7 +17,12 @@ function displayUsers(userArray){
         `;
         TBODY.append(tr);
     }
-    $(`td`).css({"color":"red"});
+    // if(GPA<2){
+    //     $(`td`).css({"color":"red"});
+    // }else{
+    //     $(`td`).css({"color":"green"});
+    // }
+    
 }
 
 

@@ -31,84 +31,91 @@ function clearForm(){
     inputGrade3.val() = "";
 }
 
-let notifications = document.getElementById("notifications");
+let notifications = $("#notifications");
 
 
 function isValid(aUser){
     let validation = true;
-    inputEmail.classList.remove("error");
-    inputPassword.classList.remove("error");
-    inputFirstName.classList.remove("error");
-    inputLastName.classList.remove("error");
-    inputAge.classList.remove("error");
-    inputGrade1.classList.remove("error");
-    inputGrade2.classList.remove("error");
-    inputGrade3.classList.remove("error");
-    notifications.classList.remove("error");
+    inputEmail.removeClass("error");
+    inputPassword.removeClass("error");
+    inputFirstName.removeClass("error");
+    inputLastName.removeClass("error");
+    inputAge.removeClass("error");
+    inputGrade1.removeClass("error");
+    inputGrade2.removeClass("error");
+    inputGrade3.removeClass("error");
+    notifications.removeClass("error");
     notifications.innerHTML="";
 
     if(aUser.email == ""){
         validation = false;
-        inputEmail.classList.add("error");
-        notifications.innerHTML=`Please, add an Email!`;
-        notifications.classList.add("error");
+        inputEmail.addClass("error");
+        notifications.append(`<p>Please, add an Email!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.password == ""){
         validation = false;
-        inputPassword.classList.add("error");
-        notifications.innerHTML=`Please, add a Password!`;
-        notifications.classList.add("error");
+        inputPassword.addClass("error");
+        notifications.append(`<p>Please, add a Password!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.firstName == ""){
         validation = false;
-        inputFirstName.classList.add("error");
-        notifications.innerHTML=`Please, add a First Name!`;
-        notifications.classList.add("error");
+        inputFirstName.addClass("error");
+        notifications.append(`<p>Please, add a First Name!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.lastName == ""){
         validation = false;
-        inputLastName.classList.add("error");
-        notifications.innerHTML=`Please, add a Last Name!`;
-        notifications.classList.add("error");
+        inputLastName.addClass("error");
+        notifications.append(`<p>Please, add a Last Name!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.age == ""){
         validation = false;
-        inputAge.classList.add("error");
-        notifications.innerHTML=`Please, add an Age!`;
-        notifications.classList.add("error");
+        inputAge.addClass("error");
+        notifications.append(`<p>Please, add an Age!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.grade1 == ""){
         validation = false;
-        inputGrade1.classList.add("error");
-        notifications.innerHTML=`Please, add a Grade1!`;
-        notifications.classList.add("error");
+        inputGrade1.addClass("error");
+        notifications.append(`<p>Please, add a Grade1!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.grade2 == ""){
         validation = false;
-        inputGrade2.classList.add("error");
-        notifications.innerHTML=`Please, add a Grade2!`;
-        notifications.classList.add("error");
+        inputGrade2.addClass("error");
+        notifications.append(`<p>Please, add a Grade2!</p>`);
+        notifications.addClass("error");
     }
     if(aUser.grade3 == ""){
         validation = false;
-        inputGrade3.classList.add("error");
-        notifications.innerHTML=`Please, add a Grade3!`;
-        notifications.classList.add("error");
+        inputGrade3.addClass("error");
+        notifications.append(`<p>Please, add a Grade3!</p>`);
+        notifications.addClass("error");
     }
 
     return validation;
 }
 
 function register(){
-    
     let newUser = new User(inputEmail.val(), inputPassword.val(),inputFirstName.val(),inputLastName.val(),inputAge.val(),inputGrade1.val(),inputGrade2.val(),inputGrade3.val());
-    console.log(newUser);
-    saveUser(newUser);
+
+    if(isValid(newUser)){
+        console.log(newUser);
+        saveUser(newUser);
+    }
     
 }
 
 function init(){
-
+    $("#btnAdd").click(register);
+    $("main").on("click",function(){
+        $("header").css({
+            "background-color":"gray"
+        });
+    });
 }
 
 window.onload=init;

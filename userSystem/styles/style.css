@@ -1,0 +1,8 @@
+.error{
+    background-color: rgb(223, 120, 161);
+}
+#notifications{
+    height: 100px;
+    border-radius: 10px;
+    padding:1rem;
+}
